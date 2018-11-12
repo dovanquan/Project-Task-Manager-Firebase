@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-
-// import { tasksCompletedRef, tasksRef } from './../firebase';
+import { tasksCompletedRef, tasksRef } from './../firebase';
+import {connect} from 'react-redux';
 
 import * as notify from './../constants/Notify';
+import { actChangeNotify} from './../actions/index';
 
 class TaskDoingItem extends Component {
 
     handleCompleted = (item) => {
         // Remove tasks
-        // tasksRef.child(item.key).remove();
+        tasksRef.child(item.key).remove();
         // Add taskCompleted
-        // tasksCompletedRef.push(item);
+        tasksCompletedRef.push(item);
 
         this.props.changeNotify(notify.NOTI_TYPE_DANGER, notify.NOTI_COMPLETED_TASK_TITLE, notify.NOTI_COMPLETED_TASK_MESSAGE );
     }
@@ -20,18 +21,23 @@ class TaskDoingItem extends Component {
 
         return (
             <li className="list-group-item">
-                {/* <p className="task">{item.name}</p> */}
-                <p className="task">Fix css</p>
+                <p className="task">{item.name}</p>
                 <span className="author">
                     <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    {/* &nbsp;{item.email} */} kumako.com
+                    &nbsp;{item.email}
                 </span>
-                {/* <button onClick={() => this.handleCompleted(item)} type="button" className="btn btn-warning btn-xs">Completed</button> */}
-                <button onClick={() => this.handleCompleted()} type="button" className="btn btn-warning btn-xs">Completed</button>
+                <button onClick={() => this.handleCompleted(item)} type="button" className="btn btn-warning btn-xs">Completed</button>
             </li>
         );
     }
 }
 
-export default TaskDoingItem;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeNotify: (style, title, content) => {
+            dispatch(actChangeNotify(style, title, content));
+        }
+    }
+}
+export default connect(null, mapDispatchToProps)(TaskDoingItem);
 

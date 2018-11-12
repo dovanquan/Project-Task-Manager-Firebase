@@ -10,3 +10,5 @@ const config = {
   };
 
 export const firebaseApp = firebase.initializeApp(config);
+export const tasksRef    = firebase.database().ref("tasks");
+export const tasksCompletedRef    = firebase.database().ref("tasksCompletedRef");

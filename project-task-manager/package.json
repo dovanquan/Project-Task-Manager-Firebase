@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^5.5.7",
     "react": "^16.6.0",
+    "react-bs-notifier": "^5.0.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",

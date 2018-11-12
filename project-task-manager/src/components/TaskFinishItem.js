@@ -8,11 +8,10 @@ class TaskFinishItem extends Component {
 
         return (
             <li className="list-group-item">
-                {/* <p className="task">{item.name}</p> */}
-                <p className="task">abc</p>
+                <p className="task">{item.name}</p>
                 <span className="author">
                     <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    {/* &nbsp;{item.email} */} kumako.com
+                    &nbsp;{item.email}
                 </span>
             </li>
         );

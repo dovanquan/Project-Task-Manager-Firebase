@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 // import { firebaseApp, usersRef } from './../firebase';
 
 import { actChangeNotify} from './../actions/index';
-import * as notify from './../constants/Notify';
+// import * as notify from './../constants/Notify';
 
 class FormSignup extends Component {
 	constructor(props) {

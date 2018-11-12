@@ -7,7 +7,7 @@ import {
 
 import routes from './../route-config';
 import Title from './Title';
-// import Notify from './Notify';
+import Notify from './Notify';
 import Menu from './Menu';
 
 class App extends Component {
@@ -17,7 +17,7 @@ class App extends Component {
             <Router>
                 <div className="container">
                     <Title />
-                    {/* <Notify /> */}
+                    <Notify />
                     <div className="row">
                         <div className="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <Menu />

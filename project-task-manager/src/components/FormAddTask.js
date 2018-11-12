@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { tasksRef } from './../firebase';
+import { tasksRef } from './../firebase';
 
 import * as notify from './../constants/Notify';
 
@@ -13,27 +13,27 @@ class FormAddTask extends Component {
 	}
 
 	handleChange = (event) => {
-		// const target = event.target;    // input selectbox
-		// const value = target.type === 'checkbox' ? target.checked : target.value;
-		// const name = target.name;
+		const target = event.target;    // input selectbox
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
 
-		// this.setState({
-		// 	[name]: value
-		// });
+		this.setState({
+			[name]: value
+		});
 	}
 
 	handleSubmit = (event) => {
-		// let { task } = this.state;
+		let { task } = this.state;
 		// let { email } = this.props.user.info;
 		
-		// tasksRef.push({
-		// 	name: task,
-		// 	email: email
-		// });
+		tasksRef.push({
+			name: task,
+			email: "admin@email.com"
+		});
 
-		// this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_ADD_TASK_TITLE, notify.NOTI_ADD_TASK_MESSGAE);
-		// this.setState({task: ''});
-		// event.preventDefault();
+		this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_ADD_TASK_TITLE, notify.NOTI_ADD_TASK_MESSGAE);
+		this.setState({task: ''});
+		event.preventDefault();
 	} 
 
 	render() {
