@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import TaskFinishItemAdmin from './TaskFinishItemAdmin';
 
-// import { tasksCompletedRef } from './../firebase';
+import { tasksCompletedRef } from './../firebase';
 import * as notify from './../constants/Notify';
 
 class TaskFinishListAdmin extends Component {
@@ -16,18 +16,18 @@ class TaskFinishListAdmin extends Component {
     }
 
     componentWillMount(){
-        // tasksCompletedRef.on('value', items => {
-        //     let data = [];
-        //     items.forEach(item => {
-        //         const {email, name} = item.val();
-        //         data.push({email, name, key: item.key} );
-        //     })
-        //     this.setState({items: data});
-        // })
+        tasksCompletedRef.on('value', items => {
+            let data = [];
+            items.forEach(item => {
+                const {email, name} = item.val();
+                data.push({email, name, key: item.key} );
+            })
+            this.setState({items: data});
+        })
     }
 
     handleClear = () => {
-        // tasksCompletedRef.set([]);
+        tasksCompletedRef.set([]);
         this.props.changeNotify(notify.NOTI_TYPE_WARNING, notify.NOTI_CLEARALL_TASK_TITLE, notify.NOTI_CLEARALL_TASK_MESSAGE );
     }
     

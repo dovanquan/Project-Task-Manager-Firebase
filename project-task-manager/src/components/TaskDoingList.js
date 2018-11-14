@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 
 import TaskDoingItem from './TaskDoingItem';
 import FormAddTask from './FormAddTask';
 import { tasksRef } from './../firebase';
-import { actChangeNotify } from './../actions/index';
 
 class TaskDoingList extends Component {
     constructor(props) {
@@ -29,7 +27,7 @@ class TaskDoingList extends Component {
     
     render() {
         let {items} = this.state;
-        // let {user} = this.props;
+        let {user} = this.props;
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
@@ -39,8 +37,7 @@ class TaskDoingList extends Component {
                     {this.showElementBody(items)}
                 </div>
                 <div className="panel-footer text-right">
-                    {/* <FormAddTask user={user} changeNotify={this.props.changeNotify}/> */}
-                    <FormAddTask changeNotify={this.props.changeNotify}/>
+                    <FormAddTask user={user} changeNotify={this.props.changeNotify}/>
                 </div>
             </div>
         );
@@ -63,11 +60,4 @@ class TaskDoingList extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeNotify: (style, title, content) => {
-            dispatch(actChangeNotify(style, title, content));
-        }
-    }
-}
-export default connect(null, mapDispatchToProps)(TaskDoingList);
+export default TaskDoingList;

@@ -24,11 +24,11 @@ class FormAddTask extends Component {
 
 	handleSubmit = (event) => {
 		let { task } = this.state;
-		// let { email } = this.props.user.info;
+		let { email } = this.props.user.info;
 		
 		tasksRef.push({
 			name: task,
-			email: "admin@email.com"
+			email
 		});
 
 		this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_ADD_TASK_TITLE, notify.NOTI_ADD_TASK_MESSGAE);
