@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-// import { firebaseApp } from './../firebase';
+import { firebaseApp } from './../firebase';
 import { actChangeNotify} from './../actions/index';
-// import * as notify from './../constants/Notify';
+import * as notify from './../constants/Notify';
 
 class FormSignin extends Component {
 	constructor(props) {
@@ -26,18 +26,17 @@ class FormSignin extends Component {
 	}
 
 	handleSubmit = (event) => {
-		// let { email, password } = this.state;
-		// firebaseApp.auth()
-		// 	.signInWithEmailAndPassword(email, password)
-		// 	.then(data => {
-		// 		this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_SIGNIN_SUCCESSFULL_TITLE, notify.NOTI_SIGNIN_SUCCESSFULL_MESSAGE );
-				
-		// 	})
-		// 	.catch((error) => {
-		// 		this.props.changeNotify(notify.NOTI_TYPE_DANGER, notify.NOTI_SIGNIN_FAIL_TITLE, error.message );
-		//   	});
+		let { email, password } = this.state;
+		firebaseApp.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then(data => {
+				this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_SIGNIN_SUCCESSFULL_TITLE, notify.NOTI_SIGNIN_SUCCESSFULL_MESSAGE );
+			})
+			.catch((error) => {
+				this.props.changeNotify(notify.NOTI_TYPE_DANGER, notify.NOTI_SIGNIN_FAIL_TITLE, error.message );
+		  	});
 
-		// event.preventDefault();
+		event.preventDefault();
 	}
 
 	render() {

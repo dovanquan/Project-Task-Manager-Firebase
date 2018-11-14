@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import { firebaseApp } from './../firebase';
+import { firebaseApp } from './../firebase';
 
 class FormUser extends Component {
 	handleClick = () => {
-		// firebaseApp.auth().signOut();
+		firebaseApp.auth().signOut();
 	}
 	
 	render() {

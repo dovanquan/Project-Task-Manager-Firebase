@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-// import { firebaseApp, usersRef } from './../firebase';
+import { firebaseApp, usersRef } from './../firebase';
 
 import { actChangeNotify} from './../actions/index';
-// import * as notify from './../constants/Notify';
+import * as notify from './../constants/Notify';
 
 class FormSignup extends Component {
 	constructor(props) {
@@ -27,23 +27,25 @@ class FormSignup extends Component {
 	}
 
 	handleSubmit = (event) => {
-		// let { email, password, website } = this.state;
-		// firebaseApp.auth()
-		// 	.createUserWithEmailAndPassword(email, password )
-		// 	.then(data=> {
-		// 		// users/dasdsadsadsd/
-		// 		usersRef.child(data.uid).set({
-		// 			website,
-		// 			isAdmin: false,
-		// 			uid: data.uid
-		// 		})
-		// 		this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_SIGNUP_SUCCESSFULL_TITLE, notify.NOTI_SIGNUP_SUCCESSFULL_MESSAGE );
-		// 	})
-		// 	.catch( (error) => {
-		// 		this.props.changeNotify(notify.NOTI_TYPE_DANGER, notify.NOTI_SIGNUP_FAIL_TITLE, error.message );
-		// 	})
+		let { email, password, website } = this.state;
+		firebaseApp.auth()
+			.createUserWithEmailAndPassword(email, password )
+			.then(data=> {
+				// users/dasdsadsadsd/
+				// console.log(data.user.uid);
+				let uid = data.user.uid;
+				usersRef.child(uid).set({
+					website,
+					isAdmin: false,
+					uid: uid
+				})
+				this.props.changeNotify(notify.NOTI_TYPE_SUCCESS, notify.NOTI_SIGNUP_SUCCESSFULL_TITLE, notify.NOTI_SIGNUP_SUCCESSFULL_MESSAGE );
+			})
+			.catch( (error) => {
+				this.props.changeNotify(notify.NOTI_TYPE_DANGER, notify.NOTI_SIGNUP_FAIL_TITLE, error.message );
+			})
 		
-		// event.preventDefault();
+		event.preventDefault();
 	}
 
 	render() {

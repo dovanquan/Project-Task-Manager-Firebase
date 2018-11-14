@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux';
-// import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 import FormUser from './../components/FormUser';
 
 class UserPage extends Component {
 
 	render() {
-		// let {user} = this.props;
+		let {user} = this.props;
 	
-		// if(user.isLogin === false) {
-		// 	return <Redirect to="/signin" />;
-		// }
+		if(user.isLogin === false) {
+			return <Redirect to="/signin" />;
+		}
 
 		return (
 			<div className="panel panel-info">
@@ -19,19 +19,17 @@ class UserPage extends Component {
 					<h3 className="panel-title">User</h3>
 				</div>
 				<div className="panel-body">
-					<FormUser />
+				<FormUser user={user} />
 				</div>
 			</div>
 		);
 	}
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         user: state.user
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
 
-// export default connect(mapStateToProps, null)(UserPage);
-export default UserPage;
-
+export default connect(mapStateToProps, null)(UserPage);
